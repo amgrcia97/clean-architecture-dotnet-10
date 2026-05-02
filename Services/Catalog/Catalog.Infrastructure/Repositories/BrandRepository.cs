@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace Catalog.Infrastructure.Repositories;
 
-public class BrandRepository : IBrandRepsitory
+public class BrandRepository : IBrandRepository
 {
     private readonly IMongoCollection<ProductBrand> _brands;
     public BrandRepository(IOptions<DatabaseSettings> options)
