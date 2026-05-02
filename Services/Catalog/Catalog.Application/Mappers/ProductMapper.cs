@@ -47,4 +47,19 @@ public static class ProductMapper
         Price = command.Price,
         CreatedDate = DateTimeOffset.UtcNow
     };
+
+    public static Product ToUpdateEntity(this UpdateProductCommand command, Product existing, ProductBrand brand, ProductType type)
+    {
+        return new Product
+        {
+            Id = existing.Id,
+            Name = command.Name,
+            Summary = command.Summary,
+            ImageFile = command.ImageFile,
+            Brand = brand,
+            Type = type,
+            Price = command.Price,
+            CreatedDate = existing.CreatedDate
+        };
+    }
 }
