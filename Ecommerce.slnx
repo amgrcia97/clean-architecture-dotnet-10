@@ -1,5 +1,11 @@
 <Solution>
   <Folder Name="/Services/" />
+  <Folder Name="/Services/Basket/">
+    <Project Path="Services/Basket/Basket.API/Basket.API.csproj" Id="bbb590ee-6e84-4a10-bf00-27ebd160b1e9" />
+    <Project Path="Services/Basket/Basket.Application/Basket.Application.csproj" Id="af8f94ff-10c3-4ee5-bcdd-ca5fd4cc626b" />
+    <Project Path="Services/Basket/Basket.Core/Basket.Core.csproj" Id="5ac24556-831b-4cf9-91f0-fcaef2053de1" />
+    <Project Path="Services/Basket/Basket.Infrastructure/Basket.Infrastructure.csproj" Id="31dce8cd-ff6c-47df-990e-5a9f10769fa8" />
+  </Folder>
   <Folder Name="/Services/Catalog/">
     <Project Path="Services/Catalog/Catalog.API/Catalog.API.csproj" />
     <Project Path="Services/Catalog/Catalog.Application/Catalog.Application.csproj" />
