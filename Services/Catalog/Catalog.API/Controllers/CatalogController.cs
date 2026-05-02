@@ -49,8 +49,9 @@ public class CatalogController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<ProductDto>> CreateProduct([FromBody] CreateProductCommand command)
+    public async Task<ActionResult<ProductDto>> CreateProduct([FromBody] CreateProductDto createProductDto)
     {
+        var command = createProductDto.ToCommand();
         var result = await _mediator.Send(command);
         return Ok(result);
     }
@@ -77,5 +78,30 @@ public class CatalogController : ControllerBase
             return NotFound();
         }
         return NoContent();
+    }
+
+    [HttpGet("GetAllBrands")]
+    public async Task<ActionResult<IEnumerable<BrandDto>>> GetBrands()
+    {
+        var query = new GetAllBrandsQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpGet("GetAllTypes")]
+    public async Task<ActionResult<IEnumerable<TypeDto>>> GetTypes()
+    {
+        var query = new GetAllTypesQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpGet("/brand/{brand}", Name = "GetProductsByBrandName")]
+    public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsByBrand(string brand)
+    {
+        // First get the products
+        var query = new GetProductsByBrandQuery(brand);
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
 }

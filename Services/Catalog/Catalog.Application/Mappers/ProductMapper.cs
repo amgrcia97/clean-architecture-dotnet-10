@@ -81,6 +81,20 @@ public static class ProductMapper
             );
     }
 
+    public static CreateProductCommand ToCommand(this CreateProductDto dto)
+    {
+        return new CreateProductCommand
+        {
+            Name = dto.Name,
+            Summary = dto.Summary,
+            Description = dto.Description,
+            ImageFile = dto.ImageFile,
+            Price = dto.Price,
+            BrandId = dto.BrandId,
+            TypeId = dto.TypeId
+        };
+    }
+
     public static UpdateProductCommand ToCommand(this UpdateProductDto dto, string id)
     {
         return new UpdateProductCommand
