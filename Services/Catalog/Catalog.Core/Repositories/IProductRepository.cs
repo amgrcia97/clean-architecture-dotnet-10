@@ -14,6 +14,6 @@ namespace Catalog.Core.Repositories
         Task<bool> UpdateProduct(Product product);
         Task<bool> DeleteProduct(string productId);
         Task<ProductBrand> GetBrandByIdAsync(string brandId);
-        Task<ProductType> GetTypesByIdAsync(string typeId);
+        Task<ProductType> GetTypeByIdAsync(string typeId);
     }
 }

@@ -88,7 +88,7 @@ public class ProductRepository : IProductRepository
         return await _products.Find(filter).ToListAsync();
     }
 
-    public async Task<ProductType> GetTypesByIdAsync(string typeId)
+    public async Task<ProductType> GetTypeByIdAsync(string typeId)
     {
         return await _types.Find(t => t.Id == typeId).FirstOrDefaultAsync();
     }
