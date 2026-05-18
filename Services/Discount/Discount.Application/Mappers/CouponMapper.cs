@@ -1,7 +1,7 @@
-﻿using Discount.Application.Commands;
+using Discount.Application.Commands;
 using Discount.Application.DTOs;
 using Discount.Core.Entities;
-//using Discount.Grpc.Protos;
+using Discount.Grpc.Protos;
 
 namespace Discount.Application.Mappers;
 
@@ -24,38 +24,38 @@ public static class CouponMapper
             Amount = command.Amount
         };
     }
-    //public static Coupon ToEntity(this UpdateDiscountCommand command)
-    //{
-    //    return new Coupon
-    //    {
-    //        ProductName = command.ProductName,
-    //        Description = command.Description,
-    //        Amount = command.Amount
-    //    };
-    //}
-    //public static CouponModel ToModel(this CouponDto dto)
-    //{
-    //    return new CouponModel
-    //    {
-    //        Id = dto.Id,
-    //        ProductName = dto.ProductName,
-    //        Description = dto.Description,
-    //        Amount = dto.Amount
-    //    };
-    //}
-    //public static CreateDiscountCommand ToCreateCommand(this CouponModel model)
-    //{
-    //    return new CreateDiscountCommand(
-    //        model.ProductName,
-    //        model.Description,
-    //        model.Amount);
-    //}
-    //public static UpdateDiscountCommand ToUpdateCommand(this CouponModel model)
-    //{
-    //    return new UpdateDiscountCommand(
-    //        model.Id,
-    //        model.ProductName,
-    //        model.Description,
-    //        model.Amount);
-    //}
+    public static Coupon ToEntity(this UpdateDiscountCommand command)
+    {
+        return new Coupon
+        {
+            ProductName = command.ProductName,
+            Description = command.Description,
+            Amount = command.Amount
+        };
+    }
+    public static CouponModel ToModel(this CouponDto dto)
+    {
+        return new CouponModel
+        {
+            Id = dto.Id,
+            ProductName = dto.ProductName,
+            Description = dto.Description,
+            Amount = dto.Amount
+        };
+    }
+    public static CreateDiscountCommand ToCreateCommand(this CouponModel model)
+    {
+        return new CreateDiscountCommand(
+            model.ProductName,
+            model.Description,
+            model.Amount);
+    }
+    public static UpdateDiscountCommand ToUpdateCommand(this CouponModel model)
+    {
+        return new UpdateDiscountCommand(
+            model.Id,
+            model.ProductName,
+            model.Description,
+            model.Amount);
+    }
 }
