@@ -9,7 +9,12 @@ docker-compose up -d
 ```
 
 - Stop the containers
-
 ```bash
 docker-compose stop
 ```
+
+- Remove all existing containers
+```bash
+docker-compose down 
+```
+  
