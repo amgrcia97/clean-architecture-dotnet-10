@@ -1,7 +1,7 @@
 ﻿using Discount.Application.Commands;
 using Discount.Application.DTOs;
 using Discount.Core.Entities;
-//using Discount.Grpc.Protos;
+using Discount.Grpc.Protos;
 
 namespace Discount.Application.Mappers;
 
@@ -33,16 +33,16 @@ public static class CouponMapper
             Amount = command.Amount
         };
     }
-    //public static CouponModel ToModel(this CouponDto dto)
-    //{
-    //    return new CouponModel
-    //    {
-    //        Id = dto.Id,
-    //        ProductName = dto.ProductName,
-    //        Description = dto.Description,
-    //        Amount = dto.Amount
-    //    };
-    //}
+    public static CouponModel ToModel(this CouponDto dto)
+    {
+        return new CouponModel
+        {
+            Id = dto.Id,
+            ProductName = dto.ProductName,
+            Description = dto.Description,
+            Amount = dto.Amount
+        };
+    }
     //public static CreateDiscountCommand ToCreateCommand(this CouponModel model)
     //{
     //    return new CreateDiscountCommand(
