@@ -1,4 +1,4 @@
-﻿using Discount.Application.Commands;
+using Discount.Application.Commands;
 using Discount.Application.DTOs;
 using Discount.Core.Entities;
 using Discount.Grpc.Protos;
