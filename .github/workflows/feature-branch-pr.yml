@@ -1,0 +1,67 @@
+name: Feature branch tests and PR
+
+on:
+  push:
+    branches:
+      - 'feature*'
+      - 'feature/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore solution
+        run: dotnet restore Ecommerce.slnx
+      - name: Run tests
+        run: dotnet test Ecommerce.slnx --no-restore --verbosity minimal
+
+  create-pr:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create or reuse PR to develop
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PR_TOKEN }}
+          script: |
+            const base = 'develop';
+            const head = context.ref.replace('refs/heads/', '');
+            if (head === base) {
+              core.info(`Head branch is ${base}; skipping PR creation.`);
+              return;
+            }
+
+            const existing = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${head}`,
+              base,
+              state: 'open',
+            });
+
+            if (existing.data.length > 0) {
+              core.info(`Found existing PR #${existing.data[0].number} from ${head} to ${base}`);
+              return;
+            }
+
+            const pr = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head,
+              base,
+              title: `Feature: ${head} → ${base}`,
+              body: `Automated PR from branch \`${head}\` into \`${base}\` after successful tests.`,
+              draft: false,
+            });
+            core.info(`Created PR #${pr.data.number}`);
