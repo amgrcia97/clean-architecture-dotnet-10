@@ -1,4 +1,4 @@
-﻿//using Discount.Application.Commands;
+﻿using Discount.Application.Commands;
 using Discount.Application.DTOs;
 using Discount.Core.Entities;
 //using Discount.Grpc.Protos;
@@ -15,15 +15,15 @@ public static class CouponMapper
             coupon.Description,
             coupon.Amount);
     }
-    //public static Coupon ToEntity(this CreateDiscountCommand command)
-    //{
-    //    return new Coupon
-    //    {
-    //        ProductName = command.ProductName,
-    //        Description = command.Description,
-    //        Amount = command.Amount
-    //    };
-    //}
+    public static Coupon ToEntity(this CreateDiscountCommand command)
+    {
+        return new Coupon
+        {
+            ProductName = command.ProductName,
+            Description = command.Description,
+            Amount = command.Amount
+        };
+    }
     //public static Coupon ToEntity(this UpdateDiscountCommand command)
     //{
     //    return new Coupon
