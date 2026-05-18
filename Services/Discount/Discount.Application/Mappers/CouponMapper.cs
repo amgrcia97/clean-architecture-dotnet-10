@@ -24,15 +24,15 @@ public static class CouponMapper
             Amount = command.Amount
         };
     }
-    //public static Coupon ToEntity(this UpdateDiscountCommand command)
-    //{
-    //    return new Coupon
-    //    {
-    //        ProductName = command.ProductName,
-    //        Description = command.Description,
-    //        Amount = command.Amount
-    //    };
-    //}
+    public static Coupon ToEntity(this UpdateDiscountCommand command)
+    {
+        return new Coupon
+        {
+            ProductName = command.ProductName,
+            Description = command.Description,
+            Amount = command.Amount
+        };
+    }
     //public static CouponModel ToModel(this CouponDto dto)
     //{
     //    return new CouponModel
